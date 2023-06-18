@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: $default-font-weight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth !important;
+}
+
+body {
+  background-color: $bg-color;
+}
+
+@for $i from 0 through 4 {
+  $alias: map-get($font-alias, $i);
+  $weight: map-get($font-weights, $i);
+
+  .fw-#{$alias} {
+    font-weight: $weight;
+  }
+}
+
+@mixin generate-padding($axis, $value) {
+  @if $axis == 't' {
+    padding-top: $value !important;
+  } @else if ($axis == 'b') {
+    padding-bottom: $value !important;
+  } @else if ($axis == 'e') {
+    padding-left: $value !important;
+  } @else if ($axis == 's') {
+    padding-right: $value !important;
+  }
+}
+
+
+@mixin generate-margin($axis, $value) {
+  @if $axis == 't' {
+    margin-top: $value !important;
+  } @else if ($axis == 'b') {
+    margin-bottom: $value !important;
+  } @else if ($axis == 'e') {
+    margin-right: $value !important;
+  } @else if ($axis == 's') {
+    margin-left: $value !important;
+  }
+}
+
+
+@for $i from 0 through 5 {
+
+  $current-spacer: map-get($spacers, $i);
+
+  @each $axis in (a, t, b, e, s) {
+
+    @if ($axis == 'a') {
+      .p-#{$i} {
+        padding: $current-spacer !important;
+      }
+      .m-#{$i} {
+        margin: $current-spacer !important;
+      }
+    }
+
+    .p#{$axis}-#{$i} {
+      @include generate-padding($axis, $current-spacer)
+    }
+    .m#{$axis}-#{$i} {
+      @include generate-margin($axis, $current-spacer)
+    }
+  }
+}
+
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.d-flex {
+  @include flex(row, initial, center);
+}
+
+.flex-row {
+  @include flex(row, space-between, center);
+}
+
+.flex-column {
+  @include flex(column, center, stretch);
+}
+
+.flex-wrap {
+  @include flex(row, flex-start, flex-start);
+  flex-wrap: wrap;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+.flex-grow-0 {
+  flex-grow: 0 !important;
+}
+
+.gap-3 {
+  gap: 1.25rem !important;
+}
+
+.w-fit-content {
+  width: fit-content !important;
+}
+
+.card {
+  border: 1px solid $card-border-color;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  padding: $card-padding;
+
+  .card-header {
+    font-weight: bold;
+    margin-bottom: calc($card-padding / 2);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: calc($card-padding / 2);
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: $card-border-radius - 1px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    margin-bottom: calc($card-padding / 4);
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    color: $card-text-color;
+    margin-bottom: calc($card-padding / 4);
+  }
+
+  .card-link {
+    color: $card-link-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $card-link-hover-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+
+@mixin border-position($position) {
+  @if $position == top {
+    border-top-width: $border-width;
+    border-top-color: $border-color;
+  } @else if $position == right {
+    border-right-width: $border-width;
+    border-right-color: $border-color;
+  } @else if $position == bottom {
+    border-bottom-width: $border-width;
+    border-bottom-color: $border-color;
+  } @else if $position == left {
+    border-left-width: $border-width;
+    border-left-color: $border-color;
+  }
+}
+
+.border-top {
+  @include border-position(top);
+}
+
+.border-right {
+  @include border-position(right);
+}
+
+.border-bottom {
+  @include border-position(bottom);
+}
+
+.border-left {
+  @include border-position(left);
+}
+
+.border {
+  border-width: $border-width;
+  border-color: $border-color;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.border-0 {
+  border-width: 0 !important;
+}
+
+
+.rounded {
+  border-radius: $border-radius !important;
+}
+
+@mixin border-color($color) {
+  border-color: $color;
+}
+
+.border-primary {
+  @include border-color($primary);
+}
+
+.border-secondary {
+  @include border-color($secondary);
+}
+
+.border-success {
+  @include border-color($success);
+}
+
+.border-danger {
+  @include border-color($danger);
+}
+
+.border-warning {
+  @include border-color($warning);
+}
+
+.border-info {
+  @include border-color($info);
+}
+
+.border-light {
+  @include border-color($light);
+}
+
+.border-dark {
+  @include border-color($dark);
+}
+
+@mixin background-color($color) {
+  background-color: $color;
+}
+
+.bg-primary {
+  @include background-color($primary);
+}
+
+.bg-secondary {
+  @include background-color($secondary);
+}
+
+.bg-success {
+  @include background-color($success);
+}
+
+.bg-danger {
+  @include background-color($danger);
+}
+
+.bg-warning {
+  @include background-color($warning);
+}
+
+.bg-info {
+  @include background-color($info);
+}
+
+.bg-light {
+  @include background-color($light);
+}
+
+.bg-dark {
+  @include background-color($dark);
+}
+
+
+@mixin button-color($color) {
+  background-color: $color;
+  border-color: darken($color, 10%);
+  &:hover {
+    background-color: darken($color, 5%);
+    border-color: darken($color, 15%);
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: $button-padding;
+  border: 1px solid transparent;
+  border-radius: $button-border-radius;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  color: $button-text-color;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  @include button-color($primary);
+}
+
+.btn-secondary {
+  @include button-color($secondary);
+}
+
+.btn-success {
+  @include button-color($success);
+}
+
+.btn-danger {
+  @include button-color($danger);
+}
+
+.btn-warning {
+  @include button-color($warning);
+}
+
+.btn-info {
+  @include button-color($info);
+}
+
+.btn-light {
+  @include button-color($light);
+}
+
+.btn-dark {
+  @include button-color($dark);
+}
+
+
+@mixin text-color($color) {
+  color: $color;
+}
+
+.text-primary {
+  @include text-color($text-primary);
+}
+
+.text-secondary {
+  @include text-color($text-secondary);
+}
+
+.text-success {
+  @include text-color($text-success);
+}
+
+.text-danger {
+  @include text-color($text-danger);
+}
+
+.text-warning {
+  @include text-color($text-warning);
+}
+
+.text-info {
+  @include text-color($text-info);
+}
+
+.text-light {
+  @include text-color($text-light);
+}
+
+.text-dark {
+  @include text-color($text-dark);
+}
+
+@mixin text-size($size) {
+  font-size: $size;
+}
+
+.text-small {
+  @include text-size(0.8rem);
+}
+
+.text-medium {
+  @include text-size(1rem);
+}
+
+.text-large {
+  @include text-size(1.2rem);
+}
+
+@mixin text-align($align) {
+  text-align: $align;
+}
+
+.text-left {
+  @include text-align(left);
+}
+
+.text-center {
+  @include text-align(center);
+}
+
+.text-right {
+  @include text-align(right);
+}
+
+@mixin text-decoration($decoration) {
+  text-decoration: $decoration;
+}
+
+.text-underline {
+  @include text-decoration(underline);
+}
+
+.text-overline {
+  @include text-decoration(overline);
+}
+
+.text-line-through {
+  @include text-decoration(line-through);
+}
+
+.container {
+  width: 70dvw;
+  margin: 20px auto;
+}
+
+.bg-weather-card {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(23deg, rgb(237 74 39) -200%, rgb(0 0 0) 51%, rgb(0 0 0) 100%);
+  background: -webkit-linear-gradient(23deg, rgb(237 74 39) -200%, rgb(0 0 0) 51%, rgb(0 0 0) 100%);
+  background: linear-gradient(23deg, rgb(237 74 39) -200%, rgb(0 0 0) 51%, rgb(0 0 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ED4A27FF",endColorstr="#000000FF",GradientType=1);
+}
+
+.weather-icon {
+  width: 64px;
+}
+
+.forecast-container::-webkit-scrollbar {
+  display: none;
+}
+
+.forecast-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.scroll-btn {
+  background: transparent;
+  padding: 11px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background ease-in-out 100ms;
+}
+
+.scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.17);
+}
+
+.logo {
+  position: fixed;
+  bottom: 0;
+  right: 1%;
+}

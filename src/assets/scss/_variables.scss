@@ -1,0 +1,76 @@
+$bg-color: black !default;
+
+$primary: #ed4a27;
+$secondary: #8a9197;
+$success: #298756;
+$danger: #d62f43;
+$warning: #fbbf1b;
+$info: #39ccf0;
+$light: #f8f9fa;
+$dark: #1a1d20;
+
+$default-font-weight: 500 !default;
+
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semiBold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-black: 900 !default;
+
+$text-primary: $primary;
+$text-secondary: $secondary;
+$text-success: $success;
+$text-danger: $danger;
+$text-warning: $warning;
+$text-info: $info;
+$text-light: $light;
+$text-dark: $dark;
+
+$font-weights: (
+        0: $font-weight-normal,
+        1: $font-weight-medium,
+        2: $font-weight-semiBold,
+        3: $font-weight-bold,
+        4: $font-weight-black,
+) !default;
+
+$font-alias: (
+        0: "normal",
+        1: "medium",
+        2: "semibold",
+        3: "bold",
+        4: "black",
+) !default;
+
+$spacer: 1rem;
+$spacers: (
+        0: 0,
+        1: $spacer * .25,
+        2: $spacer * .5,
+        3: $spacer,
+        4: $spacer * 1.5,
+        5: $spacer * 3,
+) !default;
+
+
+
+$card-border-color: #ed4a27  !default;
+$card-border-radius: 10px  !default;
+$card-box-shadow: 5px 7px 12px 0px rgb(2 21 32 / 25%)  !default;
+$card-padding: 20px  !default;
+
+
+$card-link-hover-color: #0056b3 !default;
+$card-link-color: #007bff !default;
+$card-text-color: #666666 !default;
+
+
+$border-width: 1px !default;
+$border-color: #ed4a27 !default;
+$border-radius: 5px !default;
+
+$button-padding: 10px 20px;
+$button-border-radius: 5px;
+$button-font-size: 1rem;
+$button-font-weight: bold;
+$button-text-color: #ffffff;
