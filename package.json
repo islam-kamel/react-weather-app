@@ -1,6 +1,9 @@
 {
   "name": "rc-weather-app",
   "version": "0.1.0",
+  "author": "Islam Kamel",
+  "description": "Web site created using React.js to display weather",
+  "repository": "https://github.com/islam-kamel/react-weather-app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
